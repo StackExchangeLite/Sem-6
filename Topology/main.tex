@@ -1,0 +1,99 @@
+\documentclass[A4,12pt,twoside]{book}
+\usepackage{amd}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{epigraph}
+\graphicspath{{Images/}{../Images/}}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{mathrsfs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{xca}[theorem]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+
+
+
+\newcommand{\thmp}[2]{
+\begin{theorem}
+    #1   
+\end{theorem}
+ 
+\begin{proof}
+    #2
+\end{proof}
+}
+
+\newcommand{\lemp}[2]{
+\begin{lemma}
+    #1   
+\end{lemma}
+ 
+\begin{proof}
+    #2
+\end{proof}
+}
+
+\newcommand{\defn}[2]{
+\begin{definition}
+    \textbf{(#1)}
+    \
+    #2
+    
+\end{definition}
+
+}
+
+
+
+\title{Topology (Main Source: Munkres)}
+\author{Tharun Naagesh}
+
+\begin{document}
+\maketitle
+
+% %--------------------------------------------------------------------------
+% %         First pages 
+% %--------------------------------------------------------------------------
+\newgeometry{top=8cm,bottom=.5in,left=2cm,right=2cm}
+\restoregeometry
+
+% %--------------------------------------------------------------------------
+% %         Core of the document 
+% %--------------------------------------------------------------------------
+\part{Point-Set Topology}
+\subfile{testn.tex}
+\subfile{}
+\subfile{}
+
+
+
+%\part{Second part}
+%\subfile{}
+
+
+%\part{Third part}
+%\subfile{}
+
+
+
+
+% %--------------------------------------------------------------------------
+% %         Bibliographie 
+% %--------------------------------------------------------------------------
+%\nocite{*} % to cite evey things, else cite each on using : \cite{ifrs17}. 
+%\printbibliography %to print bibliographie
+
+
+
+\end{document}
