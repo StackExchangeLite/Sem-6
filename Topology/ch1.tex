@@ -194,5 +194,50 @@ Taking motivation from the previous example, we define the following:
 \defn{Ordered Square}{The set $I \times I \subseteq \RR \times \RR$, where $I=[0,1]$ with the lexicographic order topology is called the \emph{ordered square} and is denoted by $I^2_0$ }
 \defn{Convex Sets}{Given an ordered set $X$, a subset $Y$ is called \emph{\textbf{convex}} if for any two points $a,b$ in $Y$, if $a<b$, then $(a,b)$ is fully contained in $Y$. Intervals and rays are always convex.}
 \thmp{Let $X$ be an ordered set in the order topology $\TTT^0_X$. Let $Y$ be a subset of $X$ that is convex, i.e, for any two points $a,b$ in $Y$ so that $a<b$, we have $(a,b) \subseteq Y$. Then the order topology on $Y$, $\TTT^0_Y$ is the same as the subspace topology $\TTT^S_Y$ inherited from the order topology $\TTT^0_X$.}{$$\TTT^0_Y:= \langle \{(x,y)_{Y}: x,y \in Y\}, \{[y_L,q)_Y:q \in Y\}, \{(q,y_U]_Y: q \in Y\} \rangle$$
-$$\TTT^S_Y:=\langle \{(a,b)_X \cap Y: a,b \in X\}, \{[a_0,b)_X \cap Y: b \in X\}, \{(a,b_0]\cap Y: a \in X\} \rangle $$  }
+$$\TTT^S_Y:=\langle \{(a,b)_X \cap Y: a,b \in X\}, \{[a_0,b)_X \cap Y: b \in X\}, \{(a,b_0]\cap Y: a \in X\} \rangle $$ 
+First we prove that $\TTT^0_Y \subseteq \TTT^S_Y$. Consider the basis elements of the kind $(x,y)_Y: x,y \in Y$ and let $z \in (x,y)_Y$. $(x,y)_Y:=\{z \in Y: x<z<y\}=\{z \in X: x<z<y \text{ and }z\in Y\}=(x,y)_X \cap Y$ which is a basis element of $\TTT^S_Y$. 
+\\\\ Now consider basis elements of the kind $[y_L,y)_Y=\{z \in Y: y_L \leq z <y\}=\{z \in X: y_L\leq z<y \text{ and } z \in Y\}=[y_L,y)_X \cap Y$. if $q \in [y_L, y)_Y$ and $q \neq y_L$, then we can look at $(y_L,y)_X \cap Y$ which contains $q$ and is readily inside $[y_L,y)_Y$. If $q=y_L$, Consider a smaller element that $y_L$, say $L \in X$, and consider $(L,y)_X \cap Y=(L,y)_Y=[y_L,y)_Y$, which implies that $q=y_L \in (L,y)_X \cap Y \subseteq [y_L,y)_Y$ (If $y_L$ is the least in $X$, too, then take the 2nd type basis element of $\TTT^S_X$). 
+\\\\ Consider the bases elements of the kind $(y,y_U]_Y=(y,y_U]_X \cap Y$. Let $q$ be in this set, and not equal to $y_U$. Then take $(y,y_U)_X \cap Y$ which is a subset of the above basis element. If $q=y_U$, then in $X$ take a larger element $U$ and consider $(y,U)_X \cap Y=(y,y_U]_Y$ which contains $q$ and is itelf contained in $(y,y_U]_Y$. Moreover, if the largest element of $X$ and $Y$ conincide, then take the 3rd type from $\TTT^S_Y$. 
+\\\\ Therefore, $\TTT^0_Y \subseteq \TTT^S_Y$.
+\\\\ Now we prove that $\TTT^S_Y \subseteq \TTT^0_Y$. If our basis element is of the kind $(a,b)_X \cap Y$, and $p \in (a,b)_X \cap Y$, we have a few cases to consider. \begin{enumerate}
+\item $a< y$ for every $y \in Y$, and $b>y$ for every $y \in Y$. \begin{enumerate}\item Suppose no $z$ is in $Y$ so that $a<z<q$, and likewise, no $z'$ is so that $q<z'<b$. That makes $q$ the least, and the largest element of $Y$. The order topology on $Y$ then would be trivial. \item Suppose such $z$ exists so that $a<z<q$, but no such $z'$ exists so that $q<z'<b$. That means $q$ is the largest element, and we can pick the basis $(z,q]_Y$ that contains $q$ and is inside $(a,b)_X \cap Y$. \item Suppose no such $z$ exists but such $z' $ exists, then we see $q$ is the least element, and thus we can look at $[q,z')_Y$ that contains $q$. \item If suppose both $z$ and $z'$ exist, then we can simply choose $(z,z')_Y$ containing $q$.  \end{enumerate}
+\item Suppose $z \in Y$ is so that $z<a$ but $b>y$ for every $y$. \begin{enumerate}
+    \item Suppose no $z'$ exists in $Y$ so that $q<z'<b$. Then $q$ would be the largest element of $Y$, and due to convexity of $Y$, $a \in Y$. This would give us the basis element $(a,q]_Y$ that contains $q$ and is fully contained in $(a,b)\cap Y$
+    \item If there exists $z'$ in $Y$ so that $q<z'<b$, simply choose the basis element $(a,z')_Y$ that contains $q$ and is contained in $(a,b)_X \cap Y$
+\end{enumerate}
+\item Suppose $z' \in Y$ is so that $b<z'$ but for every $y \in Y$, $a<y$. \begin{enumerate}
+    \item Suppose no $z''\in Y$ exists so that $a<z''<q$, that means that $q$ is the minimal element of $Y$, and that, from convexity, $b$ is in $Y$. This means we can pick the basis element $[q,b)_Y$ that contains $q$ and is contained in $(a,b)_X\cap Y$
+    \item Suppose there exists $z'' \in Y$ so that $a<z''<q$. Then we can pick $(z'',b)_Y$ (since $b$ is in $Y$) as our element that contains $q$ and is contained in $(a,b)_X \cap Y$.
+\end{enumerate}
+\item Suppose $h\in Y$ so that $b<h$ and $k \in Y$ so that $k<a$, we have $(a,b)_X$ completely inside $Y$, which gives us $(a,b)_Y$ as our choice of basis element.
+\end{enumerate}
+If our basis element is of the kind $[a_0,b)_X \cap Y$ and $q$ is in this set, then we have the following cases:
+\begin{enumerate}
+    \item If $Y$ has a least element and there exists $z_0\in Y$ so that $q<z_0<b$, then we can choose $[y_0,z_0)_Y$ as that which contains $q$ and is contained in $[a_0,b)_X \cap Y$.
+    \item If $Y$ has a least element and there exists no $z$ in $Y$ so that $q<z<b$, then either its possible that some $z'$ exists in $Y$ so that $b<z'$, but then $(q,b)$ would then fully contained in $Y$ so that we can use $[y_0,b)_Y$ as our basis element. If no such $z'$ exists, then $q$ becomes the largest element in $Y$ because $b$ is larger than any element of $Y$. That means we can choose $(y_0,q]_Y$ as our basis element that contains $q$ and is contained in $[a_0,b)_X \cap Y$.
+    \item If $Y$ has no least element, then there exists $p \in Y$ so that $a_0<p<q$. \begin{enumerate}
+        \item If suppose there exists no $z \in Y$ so that $q<z<b$, then either its possible that some $z'' \in Y$ so that $b<z''$ which, from convexity condition, makes $b$ fall into $Y$, and we can choose our interval to be $(p,b)_Y$ accordingly. So assuming there exists no $z'' \in Y$ so that $b<z''$, we see that $b$ is larger than all elements of $Y$ and no element of $Y$ is larger than $q$. Therefore, $q$ becomes the maximal element of $Y$, and thus, the set $(p,q]_Y$ can be choosen.
+        \item If there exists $z \in Y$ so that $q<z<b$, then the interval $(p,z)_Y$ falls into $[a_0,b)_X \cap Y$ and also contains $X$. 
+    \end{enumerate}
+\end{enumerate}
+If we take a basis element of the kind $(a,b_0]_X \cap Y$ and $q$ is in this set, then we have the following cases:
+\begin{enumerate}
+    \item If $Y$ has a largest element $y_0$ and there exists $z_0$ in $Y$ so that $a<z_0<q$, then we can simply take $(z_0,y_0]_Y$ that contains $q$, and also is contained in $(a,b_0]_X \cap Y$. 
+    \item If $Y$ has a largest element $y_0$ but there is no $z_0$ in $Y$ so that $a<z_0<q$, then either there is a $t \in Y$ so that $t<a$ which makes $a$ fall inside $Y$, thus allowing us to make use of $(a,y_0]_Y$. So we suppose $a$ is smaller than all elements in $Y$. This means that $q$ is indeed the smallest element of $Y$, so we can make use of $[q,y_0)_Y$ that contains $q$ and falls inside $(a,b_0]_X \cap Y$.
+    \item If $Y$ has no largest element, then there exists $r\in Y$ so that $q<r<b_0$. \begin{enumerate}
+        \item If suppose there exists no $z'' \in Y$ so that $a<z''<q$, then either its possible that some $t$ is there in $Y$ that is smaller than $a$, thus making $a$ a point of $Y$ so that we can make use of $(a,r)_Y$ that contains $q$. So we suppose there is no such $t$, i.e, $a$ is smaller than all elements of $Y$. This implies $q$ is the minimal element of $Y$, so that we can make use of $[q,r)_Y$ that contains $q$ and is itself contained in $(a,b_0]_X \cap Y$.
+        \item If there exists $z'' \in Y$ so that $a<z''<q$, then we can choose $(z'',r)_Y$ as that interval that contains $q$ such that it is itelf contained in $(a,b_0]_X \cap Y$.
+    \end{enumerate} 
+In all cases, for every basis element of $\TTT^S_Y$ and for every $x$ in said basis element, there exists a basis element of $\TTT^0_Y$ that contains $x$ and is iteslf contained in $\TTT^0_Y$. Thus $\TTT^S_Y \subseteq \TTT^0_Y$ which gives $\TTT^S_Y=\TTT^0_Y$.
+\end{enumerate}
+} 
+Note that, in proving that $\TTT^0_Y \subseteq \TTT^S_Y$, we do not make use of the convexity of $Y$. This motivates the following theorem:
+\thmp{Let $X$ be an ordered set with the order topology $\TTT^0_X$. Let $Y$ be a subset of $X$. The subspace topology $\TTT^S_Y$ on $Y$ is always finer than (or equal to) the order topology $\TTT^0_Y$ on $Y $ inherited from the order on $X$}{The first part of the previous theorem}
+\lemp{If there are two topologies on $X$ such that $\TTT \subset \TTT'$ (strict inclusion), then we have that, for any subspace $A$, the subspace topologies obey $\TTT^S_A\subseteq \TTT'^S_A$, where equality can be achieved.}{We have that $\TTT\subseteq \TTT'$. $\TTT^S_A:=\{U \cap A: U \in \TTT\}$ and $\TTT'^S_A:=\{U' \cap A: U' \in \TTT'\}$. From here we see that every set open in $\TTT^S_A$ is also open in $\TTT'^S_A$ which gives $\TTT^S_A \subseteq \TTT'^S_A$. But even if $\TTT \subsetneq \TTT'$, its possible that $\TTT^S_A=\TTT'^S_A$. Consider the discrete topology $\TTT_D=\{\varnothing, \{0\}, \{1\}, \{0,1\}\}$ on $\{0,1\}$ and consider the Sirpienski topology $\TTT_S=\{\varnothing, \{0\}, \{0,1\}\}$ on $\{0,1\}$. Let $A=\{0\}$. Then the subspace  topology of $A$ from the Discrete topology is the same as the subspace topology on $A$ from the Sirpienski topology.}
+\defn{Equivalent bases ($\B \equiv \B'$)}{Two bases $\B$ and $\B'$ are said to be equivalent if $\TTT(\B)=\TTT(\B')$}
+\thmp{$\B \equiv \B'$ if and only if both of the following conditions hold: \begin{enumerate}
+\item For all $x \in X$ and $U \in \B$, if $x \in U$, then there exists $U' \in \B'$ so that $x \in U' \subseteq U$
+\item For all $y \in X$ and $U' \in \B'$, if $y \in U'$, then there exists $U \in \B$ so that $y \in U \subseteq U'$
+\end{enumerate}}{$\implies$) If $\TTT(\B)=\TTT(B')$, that means that, if we take a basis element of $\TTT(B')$, say $U'$, it is an arbitrary union of elements of $B$, and likewise any $U \in \B$ is an arbitrary union of elements of $\B'$, hence its easy to see both the properties holding.
+\\\\ $\impliedby$) }
 \end{document}
