@@ -27,7 +27,7 @@
 {%
     \def\FrameCommand
     {%
-        {\color{red}\vrule width 3pt}%
+        {\color{black}\vrule width 2pt}%
         \hspace{0pt}%must no space.
         \fboxsep=\FrameSep\colorbox{white}%
     }%
@@ -40,9 +40,9 @@
     #1   
 \end{theorem}
  
-\leftbar\begin{Proof}
+\begin{Proof}\leftbar
     #2
-\end{Proof}\endleftbar
+\endleftbar\end{Proof}
 
 }
 
@@ -51,9 +51,9 @@
     #1   
 \end{lemma}
  
-\begin{Proof}
+\begin{Proof}\leftbar
     #2
-\end{Proof}
+\endleftbar\end{Proof}
 
 }
 
