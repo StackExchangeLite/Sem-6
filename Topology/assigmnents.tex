@@ -1,14 +1,53 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
-
-
 \begin{center}
-\textbf{Assignment-1}
+\textbf{Topology Assignment 1}
 \end{center}
-\textbf{Problem 1:} Show that a subset is closed if and only if it contains all its limit points
-\\\\ \textbf{Solution:} 
-\\\\ \textbf{Definition:} (Limit point) $x$ is a limit point of $S$ if for every neighbourhood of $x$, $nbd(x)-\{x\}$ intersects $S$. 
-\\\\ \textbf{Definition:} (Closure) The smallest closed set that contains $A$ is called the closure of $A$ denoted $cls_X(A)$.
+\par\noindent\rule{\textwidth}{0.4pt}
+\textbf{Problem 1:} Show that a subset is closed if and only if it contains all of its limit points
+\\\\ \textbf{Solution:} Define $x$ to be a limit point of $S$ if for all neighbourhoods $nbd(x)$, we have $(nbd(x)-\{x\}) \cap S\neq \varnothing$
+\\\\ Define the closure of $S$, as the smallest closed set that contains $S$. Denote it $cls_X(S)$
+\\\\ Define $$L:=\{x \in X: \forall nbd(x), nbd(x)\cap S\neq \varnothing\}$$
 
+\textbf{Lemma: } $L$ and $cls_X(S)$ are the same, i.e, $$\cap_{\alpha: S \subseteq F_{\alpha}} F_{\alpha} = \{x \in X: \forall nbd(x), nbd(x)\cap S \neq \varnothing\} $$
+\begin{proof}
+Let $x$ not be in $L$, i.e, $\exists nbd(x)$ such that $nbd(x) \cap S=\varnothing$ or $nbd(x) \subseteq S^C$ or $S \subseteq nbd(x)^C$. This implies that $cls_X(S) \subseteq nbd(x)^C$ which means that $x$ is not in $cls_X(S)$.
+\\\\ Let $x$ on the other hand, not be in $cls_X(S)$, which means $x \in (cls_X(S))^c$ which means that there exists a neighbourhood of $x$ that does not intersect $S$, making it not in $L$. We are done.
+\end{proof}
+
+\textbf{Lemma: } $cls_X(S)=S \cup S'$ where $S'$ is the set of all limit points of $S$.
+\begin{proof}
+If $x$ is a point of $cls_X(S)$, and is in $S$, then it trivially is in $S$. say $x \in cls_X(S)$ but isn't a point of $S$, then for every neighbourhood $nbd(x)$, we have that $nbd(x)-\{x\} \cap S \neq \varnothing$, making $x$ a limit point of $S$. If $x$ is a limit point of $S$, of course, it is obviously in $cls_X(S)$, and if it is in $S$, it obviously is in $cls_X(S)$. Hence, $cls_X(S)=S \cup S'$.
+\end{proof}
+
+\textbf{Lemma:} A set is closed if and only if $A=cls_X(A)$
+\begin{proof}
+$\implies$) Let $A= cls_X(A)$. This means obviously that $A$ is closed.
+\\\\ $\impliedby$) Suppose $A$ is closed. Obviously, $A \subseteq \cup_{\alpha: A \subseteq F_{\alpha}F_{\alpha}}$, and $A$ itself is a closed set that contains itself, hence $cls_X(A)=A$. 
+\end{proof}
+
+If $A$ is closed, $A=A \cup A'$ which means that $A' \subseteq A$.
+If $A' \subseteq A$, then $A\cup A' \subseteq A \cup A= A$. 
+
+\par\noindent\rule{\textwidth}{0.4pt}
+\textbf{Problem 2:} (a) Constant map is Continuous, (b) Composition of two continuous maps is continuous
+\\\\ \textbf{Solution:} (a) Consider $f:X \to Y$ be $f(x)=c$. Let $C$ be any open set in $Y$. If it contains $c$, then $f^{-1}(C)=X$ which is open. If $c \not \in C$, then $f^{-1}(C)=\varnothing$ which is also open.
+\\\\ (b) Let $f:X \to Y$ and $g:Y \to Z$ be two continuous functions. Consider $g \circ f: X \to Z$. Let $G \in \TTT_Z$ be any open set in $Z$. $(g \circ f)^{-1}(G)=\{x \in X: g \circ f(x) \in G\}=f^{-1}(g^{-1}(G))$ which is ultimately open in $\TTT_X$. Hence it is continuous.
+
+\par\noindent\rule{\textwidth}{0.4pt}
+\textbf{Problem 3:} Let $\TTT_D$ be the discrete topology on $\RR$ and $\TTT_E$ be the euclidean topology on $\RR$. Does there exist an homeomorphism from $\TTT_D$ to $\TTT_E$?
+\\\\ \textbf{Solution:} Let $f:\RR,\TTT_D \to \RR, \TTT_E$ be a homeomorphism. Let $\{U_{\alpha}\}$ be a basis for $\TTT_E$, we conjecture that $\{V_{\alpha}=f^{-1}(U_{\alpha})\}$ is a basis for $\TTT_D$. Let $x \in V_1 \cap V_2$. This is an open set in $\TTT_D$. $f(V_1 \cap V_2)$ is also an open set in $\TTT_E$ that contains $f(x)$ which means that there exists $U_{\alpha}$ such that $f(x) \in U_{\alpha} \subset f(U_1 \cup U_2)$. This implies $x \in f^{-1}(U_{\alpha}) \subseteq f^{-1}(U_1 \cup U_2)$. Moreover, let $U$ be open in $\TTT_D$. $U=f^{-1}(f(U))$. Moreover, since $f$ is continuous and bijective, with a continuous inverse, we have that $f(U)$ is also open in $\TTT_E$, or rather it is an arbitrary union of basis elements $\cup_{\alpha}U_{\alpha}$. This implies $f^{-1}(f(U))$ is an arbitrary union of elements of $\{f^{-1}(U_{\alpha})\}$. Hence $\{V_{\alpha}=f^{-1}(U_{\alpha})\}$ is a basis for $\TTT_D$ (True for any homeomorphism).
+\\\\ We know that $\TTT_E$ has countable basis, i,e, is 2nd countable. Therefore, the collection $\{f^{-1}(U_i)\}$ forms a basis for $\TTT_D$. But note that (fact from analysis) any infinite discrete metric space is not 2nd countable (since it is not separable / lindelof). To see this, consider all the singleton elements. This is an open cover of $\RR$, but contains no countable subcover. Hence, such a homeomorphism cannot exist.
+\par\noindent\rule{\textwidth}{0.4pt}
+\textbf{Problem 4:} Cofinite topology and countable complement topology:
+\\\\ Let $X$ be a set. Let $U$ be open if and only if $U^C$ is finite, $\varnothing$ or $X$. Of course $\varnothing$ and $X$ are in the topology. Consider $U_{\alpha}$ be a collection of open sets. $\cup_{\alpha} U_{\alpha}$. its complement is $\cap_{\alpha} U_{\alpha}^C$. If their complements are all $X$, then the intersection is $X$. If their complements are all empty, then the intersection is empty. If their complements are all finite, then the intersection is also finite, topology is closed under arbitrary unions. Consider $U_1 \cap U_2 \cap \cdots U_k=\cap_{i=1}^k (U_i)$. Its complement is $\cup_{i=1}^{k}(U_i^c)$. If each complement is finite, its finite union is still finite. If even one of their complements is $X$, then the finite union is also $X$. Hence, closed under finite intersections. Hence it defines a topology.
+\\\\ If we replace finiteness with countable: $X$ and $\varnothing$ are still in $\TTT$. Suppose that $U_{\alpha}$ are such that each of their complements are $X$ or $\varnothing$ or countable. $(\cup_{\alpha} U_{\alpha})^c=\cap_{\alpha} U^c_{\alpha}$ which is ultimately either $X, \varnothing$ or countable (atmost countable). Let $U_1,U_2 \cdots U_l$ be a finite collection whose complements are atmost countable sets. Their intersection's complement is $\cup_{i=1}^l U_l^c$ which is a finite union of atmost countable sets, which is atmost countable. If even one of the complements is $X$, the complement of the intersection would be $X$ as well. 
+Hence, if we replace finite with atmost countable, we still have a topology.
+\par\noindent\rule{\textwidth}{0.4pt}
+\textbf{Problem 5:} Let $X= \ZZ$ and $S_{a,b}:=a+b\ZZ=\{a+bz:z \in \ZZ\}$
+\\\\ (a) If $x \in \ZZ$, then $x \in S_{0,x}$ obviously. Let $x \in S_{a,b}$ and $S_{c,d}$. $x=a+qb=c+q'd$. $S_{a,b}$ and $S_{c,d}$ are said to meet at $x$. The arithmetic progression jumps every $b$ elements for $S_{a,b}$, and jumps every $d$ elements for $S_{c,d}$. Hence, $S_{x,lcm(b,d)}$ contains $x$ and is contained in both $S_{a,b}$ and $S_{c,d}$. Hence, the two conditions for bases are verified.
+\\\\ (b) The topology generated by $\B$ is all possible unions of elements of $\B$. Consider $S_{a,b}^C$. This can be written as the union: $\cup_{j=1}^{b-1} S_{a+j,b}$. Hence, every $S_{a,b}$ is clopen.
+\\\\ (c) Consider $\{-1,1\}^c$. Let there be only finite primes, i,e, $p_1,p_2 \cdots p_q$. Note that, every element in $\ZZ$ that is not $-1$ or $1$, is a multiple of one of $p_1,p_2 \cdots p_q$. Therefore, every non unit (-1,1) element can be covered by $S_{0,p_i}$. Hence, $\{-1,1\}^C= \cup_{i=1}^{q} (S_{0,p_i})$ Which implies $\{-1,1\}=\cap_{i=1}^q (S_{0,p_i}^C)$. Since $S_{0,p_i}$ are open, we conclude that $\{-1,1\}$ is open. But every open set in this topology must necessarily be infinite or empty, since a union of elements of $S_{a,b}$ ought to be infinite. Hence, we conclude that there must be infinite primes.
+\par\noindent\rule{\textwidth}{0.4pt}
 
 \end{document}
