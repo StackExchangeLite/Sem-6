@@ -327,5 +327,17 @@ For part (2), we can simply replace in (1), $A$ with $A^c$, i.e, $((A^c)^{\circ}
 \end{example}
 \thmp{Let $X$ be a $T_1$ space and $A$ a subset of $X$. If $A$ is a subset of $X$, then $x$ is a limit point of $A$ if and only if every neighbourhood of $x$ contains infinitely many points of $A$. }{$\implies$) Suppose $x$ is a limit point of $A$, i.e, for every neighbourhood $nbd(x)$, we have $(nbd(x)-\{x\}) \cap A \neq \varnothing$. Suppose also that $(nbd(x)) \cap A$ is finite for some neighbourhood of $x$, enumerate it as $\{x_1,x_2,\cdots x_k\}$. Since every finite point set is closed, $nbd(x) \setminus \{x_1,x_2 \cdots x_k\}=nbd(x) \cap \{x_1,x_2,\cdots x_k\}^c$ is open, and contains $x$. But note that this neighbourhood does not intersect $A$ at all, because we removed all the points that belonged in the intersection of $nbd(x)$ and $A$. This contradicts the assumption that $x$ is a limit point.
 \\\\ $\impliedby$) If for every $nbd(x)$, $nbd(x)\cap A$ is infinite, then $x$ is trivially a limit point of $A$. }
+\defn{Convergent sequence}{A sequence $x_n \in X$ a topological space is said to converge to $x \in X$ if for every neighbourhood $nbd(x)$, there exists $n_{nbd(x)}$ such that $\forall n \geq n_{nbd(x)}$, we have $x_n \in U$.  }
+\thmp{In a Hausdorff space, sequences converge to a unique point}{Let $x$ and $y$ be a limit of $x_n$. Consider $U$ and $V$ such that $x \in U$ $y \in V$ and $U \cap V= \varnothing$. There exists $n_{U}$ such that $\forall n \geq n_U$, $x_n \in U$, which means that only finite points of $x_n \in V$, which is a contradiction. }
+\lemp{\begin{enumerate}
+\item Order topology is always Hausdorff
+\item Product topology of two Hausdorff spaces is Hausdorff
+\item Subspace topology of a Hausdorff space is Hausdorff
+\end{enumerate}}{1) Let $x,y \in X$. WLOG assume $x<y$. Consider $x \in (-\infty,y)$ and $y \in (x, \infty)$. If they have an intersection, it would be $(-\infty,y) \cap (x,\infty):=\{z \in X: x<z<y\}=(x,y)$ which is open. If this $(x,y)$ is non empty, then pick that element $q \in (x,y)$, and consider $(-\infty,q)$ and $(q,\infty)$.
+\\\\ 2) Consider $X \times Y$, where $X$ and $Y$ are Hausdorff topologies. Let $(x,y), (x',y') \in X \times Y$. There exists $A, A' \subseteq X$ such that $x \in A, x'\in A'$ and $A \cap A'=\varnothing$. Likewise for $y$ and $y'$ there exists a corresponding $B,B' \subseteq Y$. Hence, $(x,y) \in A \times B$ and $(x',y' )\in A' \times B'$ such that $A \times B \cap A' \times B'$ is empty. These are neighbourhoods, hence, $X \times Y$ is Hausdorff.
+\\\\ 3) Let $Y \subseteq X$ where $X$ is Hausdorff. Consider $z,z' \in Y$. Since $z$ and $z' $ are also in $X$, $\exists U,U' \in \TTT_X$ such that $z \in U, z' \in U'$ and $U \cap U'=\varnothing$. Therefore, $z \in U \cap Y, z'\in U' \cap Y $ and $(U \cap Y) \cap (U' \cap Y)=\varnothing$. Hence subspace topology is Hausdorff. }
+
+
 \thmp{\textbf{(For later purposes)} If $Y$ is dense in $X$ and $X$ is an ordered set with the order topology, then $\TTT^S_Y=\TTT^0_Y$}{later}
+
 \end{document}
