@@ -343,7 +343,31 @@ For part (2), we can simply replace in (1), $A$ with $A^c$, i.e, $((A^c)^{\circ}
 
 \thmp{\textbf{(For later purposes)} If $Y$ is dense in $X$ and $X$ is an ordered set with the order topology, then $\TTT^S_Y=\TTT^0_Y$}{Say $Y \subseteq X $ is dense in $X$, which means $\overline{Y}=X$. Consider $X$ with the order topology $\TTT_{X}$ given by the basis elements $\{(a,b),[a_0,b),(a,b_0]: a,b \in X\}$}
 
-\lemp{Let $X$ and $Y$ be topological spaces. $A \subseteq X$ and $B \subseteq Y$. Then $$cls(A \times B)=cls(A)\times cls(B) $$}{$X \times Y - (cls(A)\times cls(B))=$ open set (it comes to be the union of two open sets). Hence, $cls(A) \times cls(B)$ is closed and it contains $A \times B$, hence $cls(A \times B) \subseteq cls(A)\times cls(B)$. }
+\lemp{Let $X$ and $Y$ be topological spaces. $A \subseteq X$ and $B \subseteq Y$. Then $$cls(A \times B)=cls(A)\times cls(B) $$}{$X \times Y - (cls(A)\times cls(B))=$ open set (it comes to be the union of two open sets). Hence, $cls(A) \times cls(B)$ is closed and it contains $A \times B$, hence $cls(A \times B) \subseteq cls(A)\times cls(B)$. Let $(p,q)$ be a point of $cls(A)\times cls(B)$. There are a few cases to consider: \begin{enumerate}
+    \item $p$ is a limit point of $A$, $q$ is a limit point of $B$ 
+    \item $p$ is a limit point of $A$, $q$ is a point of $B$
+    \item $p$ and $q$ are respectively points of $A$ and $B$
+    \item vice versa cases for $q$
+\end{enumerate}
+In case (1), we have that for every neighbourhood $U_x$ containing $p$, $U_p$ intersects $A$, and for every neighbourhood $V_q$ containing $q$, $V_q$ intersects $B$ (both non trivially). We claim that $(p,q)$ is a limit point of $A \times B$, hence in $cls(A \times B)$. Consider any basis element containing $(p,q)$, $U_p \times V_q$. This intersects $A \times B$ non trivially since $U_p$ and $V_q$ respectively intersect $A$ and $B$ non trivially.
+\\\\ In case (2), we apply the same argument, and claim that $(p,q)$ is a limit point of $A \times B$. 
+\\\\ In all cases, $(p,q)$ is in $cls(A \times B)$, implying that $cls(A) \times cls(B)\subseteq cls(A \times B)$ 
+}
+\thmp{\textbf{(Important characterisation of Hausdorffness)} A space $X$ is Hausdorff if and only if $\Delta:=\{(x,x):x \in X \}$ is a closed subset of $X \times X$}{$\implies$) Let $X$ be Hausdorff. Consider $\Delta^C:=\{(x,y): x \neq y\}$. Let $(x,y)$ be any point in $\Delta^C$. If $x \neq y$, from Hausdorffness we have $x \in V_x$ and $y \in V_y$ such that $V_x \cap V_y=\varnothing$. Consider $V_x \times V_y$. This is an open set containing $(x,y)$. Suppose there exists some element of $\Delta$ in $V_x \times V_y$, i.e, some $(p,p)$ in $V_x \times V_y$, this would imply that $p \in V_x \cap V_y$, which is a contradiction. Hence, $V_x \times V_y$ is fully contained in $\Delta^C$, hence $\Delta^C$ is the union of basis elements, hence open.
+\\\\ $\impliedby$) Let $\Delta^C$ be open. i.e, for any two points (distinct), $(x,y)$, there exists basis element $U_x \times U_y$ that contains $(x,y)$ and which is fully contained in $\Delta^C$. That means no element of $\Delta$ intersects $U_x \times U_y$. This means $U_X \cap U_y$ is empty, and $x \in U_x$ and $y \in U_y$. This is the Hausdorff condition.}
+\thmp{\textbf{\emph(Kuratowski 14 set)} Consider the collection of all subsets $A$ of the topological space $X$. The operation $A \mapsto cls(A)$ and the operation $A \mapsto A^C$ are functions from this collection to itself. Starting with a set $A$, one can make no more than 14 different sets by applying these operations successively.}{work in progress}
+\section{Continuous functions}
+\defn{Continuous function}{A function $f:X \to Y$ mapping topological space $X$ to another topological space $Y$ is continuous if for every open set $V$ in $Y$, $f^{-1}(V)$ is open in $X$.}
+\begin{remark}
+    Note that if the topology of $Y$ is given by a basis $\BB$, then it suffices to check inverse images of $B \in \BB$. This is because any open set is an arbitrary union of basis elements, and inverse image of a union is the union of the inverse image. 
+\end{remark}
+\thmp{Let $X$ and $Y$ be topological spaces. Let $f:X \to Y$, then TFAE:
+\begin{enumerate}
+\item $f$ is Continuous
+\item For every subset $A$ of $X$, one has $f(\overline{A}) \subseteq \overline{f(A)}$
+\item For every closed subset $B$ of $Y$, the set $f^{-1}(B)$ is closed in $X$
+\item For every $x \in X$ and every neighbourhood $V$ of $f(x)$, there is a neighbourhood $U$ of $x$ such that $f(U) \subseteq V$ (This must be familiar from analysis)
+\end{enumerate}}{$(1) \implies (2)$) Let $f$ be continuous, i.e, inverse maps open sets to open sets. Let $A$ be a subset of $X$. We know $f$ inverse maps open sets to open sets. }
 \section{Quotient Topology}
 Let $X$ be a topological space. Let $\sim$ be an equivalence relation on $X$. Define $X/\sim$ to be the set of all equivalence classes on $X$, coming from $\sim$. Let $\pi:X \to X/\sim$ be given by $x \mapsto [x]_{\sim}$. Define a set $V \subseteq X/\sim$ to be open in $X/\sim$ if and only if $\pi^{-1}(V)$ is open in $X$. This forms a unique topology on $X/\sim$ called the quotient topology. 
 \lemp{The above prescription indeed forms a topology.}{$X/\sim$ and $\varnothing $ are trivially in the topology. Let $\{V_{\alpha}:\alpha\in A \}$ be a collection of open sets in $X/\sim$. $\pi^{-1}(\cup_{\alpha} V_{\alpha})=\cup_{\alpha} \pi^{-1}(V_{\alpha})$ is open by definition. It is also, similarly, easy to see that a finite intersection of open sets in $X/\sim$ is also open.   }
