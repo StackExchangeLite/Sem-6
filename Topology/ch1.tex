@@ -366,8 +366,38 @@ In case (1), we have that for every neighbourhood $U_x$ containing $p$, $U_p$ in
 \item $f$ is Continuous
 \item For every subset $A$ of $X$, one has $f(\overline{A}) \subseteq \overline{f(A)}$
 \item For every closed subset $B$ of $Y$, the set $f^{-1}(B)$ is closed in $X$
+\item For every set $B \subseteq Y$, we have $f^{-1}(B^0) \subseteq (f^{-1}(B))^0$
 \item For every $x \in X$ and every neighbourhood $V$ of $f(x)$, there is a neighbourhood $U$ of $x$ such that $f(U) \subseteq V$ (This must be familiar from analysis)
-\end{enumerate}}{$(1) \implies (2)$) Let $f$ be continuous, i.e, inverse maps open sets to open sets. Let $A$ be a subset of $X$. We know $f$ inverse maps open sets to open sets. }
+\end{enumerate}}{$(1)\iff (3)$) Rather obvious
+\\\\ $(1)\implies (2))$ $f^{-1}(\overline{f(A)})$ is closed. $A \subseteq f^{-1}(f(A))\subseteq f^{-1}((\overline{f(A)}))$. This gives $\overline{A}\subseteq f^{-1}((\overline{f(A)}))$. $f(\overline{A})\subseteq f(f^{-1}(\overline{f(A)}))\subseteq \overline{f(A)}$.
+\\\\ $(2)\implies (1))$ Let $G$ be a closed set. We want to show $\overline{f^{-1}(G)}\subseteq f^{-1}(G)$ (would show it is closed). $f(\overline{f^{-1}(G)})\subseteq \overline{ f(f^{-1}(G))}\subseteq \overline{G}=G$. $f^{-1}(f(\overline{f^{-1}(G)})) \subseteq f^{-1}(G)$ which gives $\overline{f^{-1}(G)}\subseteq f^{-1}(G)$. We are done.
+\\\\ $(1)\implies (4))$ Let $B \subseteq Y$. $B^0$ is open, and $f^{-1}(B^0)$ is open. $B^0 \subseteq B$, and $f^{-1}(B^0) \subseteq f^{-1}(B)$ which gives $f^{-1}(B^0) \subseteq (f^{-1}(B))^0$.
+\\\\ $(4)\implies (1)) $ Let, for every $B \subseteq Y$, we have $f^{-1}(B^0) \subseteq (f^{-1}(B))^0$. Let $B$ be an open set in $Y$. We want to show $f^{-1}(B)$ is open, i.e $f^{-1}(B) \subseteq (f^{-1}(B))^0$, but this is immediately evident.
+\\\\ $(1)\implies (5)$) Let $V$ be a neighbourhood of $f(x)$. $f^{-1}(V)$ is open and contains fibres of $f(x)$, in particular, it contains $x$. $f(f^{-1}(V))\subseteq V$. So we can take $f^{-1}(V)$ as that neighbourhood of $x$.
+\\\\ $(5)\implies (1)$) Let $V$ be open in $Y$. If $f^{-1}(V)$ is empty, its fine. We have that for every $x \in X$, if $V$ is a neighbourhood of $f(x)$, then there exists a neighbourhood $U$ of $x$ such that $f(U)\subseteq V$. $U \subseteq f^{-1}(f(U)) \subseteq f^{-1}(V)$. For every $x$ in $f^{-1}(V)$, there exists $U_x$ (open) such that $x \in U_x \subseteq f^{-1}(V)$. This implies $f^{-1}(V)$ is open. }
+\defn{homeomorphism}{$f:X\to Y$ is \emph{homeomorphism} if $f$ is bijective, $f$ is continuous and $f^{-1}:Y \to X$ is continuous}
+\begin{example}
+    A bijective function can be continuous without being a homeomorphism. Take $\textbf{x}:X \to Y$, where $X$ is the discrete topology and $Y$ is the indiscrete topology, with $\textbf{x} (x)=x$. The inverse function is also $x$, i.e $f^{-1}(y \in Y)=y$. The map $\textbf{x}$ is continuous, but the inverse map is not. 
+\end{example}
+\thmp{ \textbf{(Constructing continuous functions)}\begin{enumerate}
+\item \textbf{Constant function} is continuous
+\item \textbf{Inclusion map} is continuous, i.e, if $A \subset B$, then $i:A \hookrightarrow B$ is continuous.
+\item \textbf{Composition of continuous maps} is continuous. 
+\item \textbf{Restricting the domain} If $f:X \to Y$ is continuous, and $A \subseteq X$, then $f|_{X}:X \to Y$ is also continuous.
+\end{enumerate}  }{1) Let $V$ be open in $Y$. $f^{-1}(V)$ either is the whole set or empty. Hence, $f^{-1}(V)$ is open.
+\\\\ 2) Let $i: A \hookrightarrow B$ be an inclusion. $i(x)=x$. Let $V$ be open in $B$. $f^{-1}(V)=\{x \in A: f(x)=x \in V\}=A \cap V$ which is open in $A$ under subspace topology.
+\\\\ 3) Let $f:X \to Y$ and $g:Y \to Z$ be continuous. Look at $g \circ f: X \to Z$. Let $W$ be open in $Z$. $(g \circ f)^{-1}(W)=\{x \in X: f(x)\in  g^{-1}(W)\}=f^{-1}(g^{-1}(W))$ which is open in $X$.
+\\\\ 4) Let $f:X \to Y$ be continuous and $A \subseteq X$. $f|_{A}:A \to Y$ is given by $f_{A}(x)=f(x)$. Domain restrictions are themselves composition of the function with the inclusion map, hence continuous.  }
+\thmp{\textbf{(Pasting Lemma)} $A$ and $B$ be closed in $X$, and $X=A \cup B$, $f:A \to Y$ and $g:B \to Y$. If $g(x)=f(x)$ for all $x \in A \cap B$, then there exists $h:X \to Y$ that is continuous on all of $X$, which restricts to $f$ on $A$, and $g$ on $B$.  }{Define $h:X \to Y$ given by $$h(x)=\begin{cases} f(x) \ :x \in A \\ g(x) \ :x \in B
+
+\end{cases} $$ This map is well defined since $f$ and $g$ agree on $A \cap B$. Look at $h^{-1}(S)$ for some closed set $S$. $h^{-1}(S):=\{x \in X: h(x) \in S\}=f^{-1}(S) \cup g^{-1}(S)$, which is ultimately closed since each of $g$ and $f$ are continuous (and $A$ and $B$ are themselves closed in $X$). }
+\thmp{Let $f:A \to X \times Y$ given by $$f(a)=(f_1(a),f_2(a))$$ for functions $f_1:A \to X$ and $f_2:A \to Y$. Then $f$ is continuous if and only if $f_1$ and $f_2$ are continuous. }{$\implies)$ If $f$ is continuous, then let $U \times Y$ be an open set in $X \times Y$, such that $U$ is open in $X$. $f^{-1}(U \times Y):=\{a \in A: f_1(a) \in U, f_2(a) \in Y\}$, which gives us $f_1^{-1}(U) \cap f_2^{-1}(Y)=f_1^{-1}(U)$ is open in $A$. The same can be done with $X \times V$ to get $f_2^{-1}(V)$ is open in $A$. Hence, the cooridnate functins are continuous. 
+\\\\ $\implies)$ Let the coordinate functions be continuous. Let $U \times V$ be an open set in $X \times Y$. $f^{-1}(U \times V)=f_1^{-1}(U)\cap f_2^{-1}(V)$ which is open in $A$. Since on bases, $f$ inverse maps bases to open sets, we have that $f$ is continuous. }
+
+\defn{2nd Countable Spaces}{A space $X$ is said to be \textbf{2nd countable} if it has a countable basis. Famous example: $\RR^n$ with the euclidean topology.}
+\begin{example}
+\textbf{There can exist functions $f:A \times B \to X$ such that $f$ is continuous on each variable separately, but as a whole is discontinuous. } \emph{Work in Progress (Munkres exercise)}
+\end{example}
 \section{Quotient Topology}
 Let $X$ be a topological space. Let $\sim$ be an equivalence relation on $X$. Define $X/\sim$ to be the set of all equivalence classes on $X$, coming from $\sim$. Let $\pi:X \to X/\sim$ be given by $x \mapsto [x]_{\sim}$. Define a set $V \subseteq X/\sim$ to be open in $X/\sim$ if and only if $\pi^{-1}(V)$ is open in $X$. This forms a unique topology on $X/\sim$ called the quotient topology. 
 \lemp{The above prescription indeed forms a topology.}{$X/\sim$ and $\varnothing $ are trivially in the topology. Let $\{V_{\alpha}:\alpha\in A \}$ be a collection of open sets in $X/\sim$. $\pi^{-1}(\cup_{\alpha} V_{\alpha})=\cup_{\alpha} \pi^{-1}(V_{\alpha})$ is open by definition. It is also, similarly, easy to see that a finite intersection of open sets in $X/\sim$ is also open.   }
@@ -398,4 +428,39 @@ Let $X$ be a topological space. Let $\sim$ be an equivalence relation on $X$. De
 \\\\ \textbf{Incoherent ramblings begin:} $f(\cup_{\alpha} U_{\alpha})=\{f(x): \exists \alpha \text{ such that } x \in U_{\alpha}\}$. Note that $z \in \cup_{\alpha}f(U_{\alpha})$ means that $z=f(x)$ for some $x \in U_{\alpha}$. Moreover, if $z \in f(\cup_{\alpha} U_{\alpha})$, that means that $z=f(x)$ for some $x \in $ some $U_{\alpha}$. These two sets are hence the same. \textbf{End of Incoherent rambling}
 \\\\ Look at $g:Y \to X/\sim$, given by $g(y=q(x) \in Y)=[x]$. This is well defined since if $y=q(x')$, by definition $[x]=[x']$. Consider $g \circ f: X/\sim \to X/\sim$. $g \circ f([x])=g(q(x))=[x]$. Hence, $g$ is the inverse of $f$. Let $V$ be open in $X/\sim$. Look at $g^{-1}(V)=\{z \in Y:g(z)=g(q(x))=[x]\in V\}$. $\cup_{[x]\in V} g^{-1}(\{[x]\})=g^{-1}(V)$. If we look at $g^{-1}(\{[x]\})=\{y \in Y: g(y)=[x]\}$. Since $g(y)=[z]$ where $q(z)=y$, we have $\{y \in Y: g(y)=[x]\}=\{q(x)\}$. $g^{-1}(V)=\cup_{[x]\in V}g^{-1}(\{[x]\})=\cup_{[x]\in V} \{q(x)\}$. We want to check if $q^{-1}(g^{-1}(V))$ is open, which amounts to checking $\cup_{[x]\in V}q^{-1}(\{q(x)\})=\cup_{[x]\in V}([x])=\cup_{y \in V} q^{-1}(y)$ (since equivalence classes are the fibres). This gives us $q^{-1}(V)$ which is open since $q$ is continuous. Hence, $g$ is also continuous, therefore, $f$ is a bijective continuous map, whose inverse is also continuous, aka, a homeomorphism. Therefore, $X/\sim \cong Y$.   }
 Note that, in general, $\pi:X \to X/\sim$ with the quotient topology need not be open. It is of course continuous.
+\defn{Saturated Sets}{A set $C$ of $X$ is said to be saturated with respect to $f:X\to Y$ if $$C=f^{-1}(f(C))$$}
+\thmp{A surjective continuous map is quotient if and only if it maps saturated open sets to open sets}{$\implies)$ Let $C$ be saturated open. $f^{-1}(f(C))=C$. Look at $f(C)=f(f^{-1}(f(C)))$ in $Y$. Is this open? Look at $f^{-1}(f(C))=C$, which is open. Hence, $f(C)$ is open. 
+\\\\ $\impliedby)$ Let $V$ be a set in $Y$ such that $f^{-1}(V)$ is open. $f(f^{-1}(V))=V$. Note that $f^{-1}(V)$ is a saturated open set in $X$ since $f^{-1}(V)=f^{-1}(f(V))$. Hence, we see $V$ is open in $Y$, hence, $f$ is a quotient. }
+\lemp{A saturated set $S$ is open (where $f:X \to Y$ is a quotient) if and only if $f(S)$ is open. }{$\implies)$ If $S$ is open, and since quotients map saturated open sets to open sets, $f(S)$ is open. 
+\\\\ $\impliedby$) Say $f(S)$ is open. Since $S$ is saturated, $f^{-1}(f(S))=S$, which is saturated, and open from continuity.  }
+\thmp{If $q:X \to Y$ is continuous, surjective and open (or closed), then $q$ is quotient.}{Say $q$ is an open map. Let $V$ be an open set in $Y$, then obviously $q^{-1}(V)$ is open in $X$. Let $V$ be a set in $Y$ such that $q^{-1}(V)$ is open. Then $q(q^{-1}(V))=V$ (surjective) is open by virtue of $q$ being open. Hence, $V \in \TTT_Y$ is open if and only if $q^{-1}(V) \in \TTT_X$ is open. Hence $q$ is quotient.
+\\\\ Let $q$ be a closed map. Let $V$ be a set in $Y$ such that $q^{-1}(V)$ is open. That implies $X-q^{-1}(V)=q^{-1}(Y-V)$ is closed. Since $q$ is closed, we have $q(q^{-1}(Y-V))=Y-V$ to be closed, which implies $V$ is open. Hence, $q$ is quotient. }
+\defn{Open Relation}{A relation $\sim$ on $X$ is said to be open if $q:X \to X/\sim$ given by the quotient topology ($V$ in $X/\sim$ open if and only if $q^{-1}(V) \in X$ is open) is an open map. }
+\begin{example}
+    \textbf{There can exist quotient maps that are neither open, nor closed.}
+    \\\\ \textit{Its coming}
+
+\end{example}
+\subsection{Topological Groups}
+\defn{Group}{A set $G$ with an operation $\cdot:G \times G \to G$ is called a \emph{group} if 
+\begin{enumerate}
+    \item for all $a,b,c$, we have $a \cdot (b\cdot c)=(a \cdot b)\cdot c$
+    \item there exists $e \in G$ such that for all $x \in G$, $x\cdot e=e \cdot x=x$
+    \item for all $x$ in $G$, there exists unique $x^{-1}$ so that $x \cdot x^{-1}=x^{-1}x=e$
+\end{enumerate}}
+\defn{Topological Group}{A group $G$ with a topology $\TTT_G$ is said to be a \emph{topological group} if:
+\begin{enumerate}
+    \item $\cdot :G \times G \to G$ is Continuous
+    \item The map $g \mapsto g^{-1}$ is a homeomorphism
+\end{enumerate} }
+\defn{Group Action}{Given a set $A$ and a group $G$, we say $G$ "acts" on $A$, via the "action" $\rho:G \times A \to A$ if $\rho(e,x)=x$ for all $x \in A$, and $\rho(g,\rho(h,x))=\rho(gh,x)$. 
+\\\\ Another way to look at group actions is to view $\rho(g,x)$ as a function of $x$ for a given fixed $g$. Let $g$ be fixed, we get a function $\tilde{\rho}^g:A \to A$, given by $\tilde{\rho}^g (x)=\rho(g,x)$. This naturally forms a bijection from $A$ to $A$, which implies that $\tilde{\rho}: G \to symm(A)$}
+\defn{Orbits of a group action}{Let $G$ be a group, $A$ a set, and $\rho:G \times A \to A$ be a group action. An orbit of $x \in A$, denoted $\mathscr{O}_x$, is the set $\{\rho(g,x):g \in G\}$. The collection of all $\mathscr{O}_x$ partitions the set, which means that there is an equivalence relation whose equivalence classes are $\mathscr{O}_x$}
+\thmp{If the equivalence relation $\sim$ on a topological space $X$ comes from the orbits of a topological group's continuous group action, then the quotient map $q:X \to X/\sim$ is an open map. }{Let $G$ be a topological group, and $\rho:G \times X \to X$ be continuous. The orbits are the sets $[x]=\{g \cdot x: g \in G\}$. Let $U$ be an open set in $X$, and $q(U)$ the image of $U$ under $q$, in $X/\sim$. We need to show that $q^{-1}(q(U))$ is open in $X$. $U=\cup_{x} \{x\}$ and $q(U)=\cup_{x} q(\{x\})=\cup_{x \in U} (\{\mathscr{O}_x\})$ which is ultimately a subset of $X/\sim$ (Here, we view $\{\mathscr{O}_x\}$ as a subset of $X/\sim$). $q^{-1}(q(U))=q^{-1}(\cup_{x\in U} \{\mathscr{O}_x\} )=\cup_{x \in U}(\mathscr{O}_x)$ which lands in the space of subsets of $X$. 
+\\\\ Consider for a moment the (said to be) continuous function $$\rho:G \times X \to X$$ Look at $k=\rho|_{\{g\} \times X}: \{g\}\times X \to X$, restriction of $\rho$. This turns out to be a homeomorphism. Note: it is easy to see that this is a bijection, since for a fixed $g \in G$, $\rho^g(x)$ is in the symmetric group of $X$. Look at the function $$f: X \to \{g\} \times X$$ given by $f(x)=(g,\rho(g^{-1},x))$. This function is continuous since it is of the form $x \mapsto (f_1(x),f_2(x))$ where each of $f_1$ and $f_2$ are continuous ($x \mapsto g$ is constant, and $x \mapsto \rho(g^{-1},x)$ is continuous due to restriction). Hence, $f$ is continuous. Look at $f \circ k(g,x)=f(\rho(g,x))=(g,\rho(g^{-1},\rho(g,x)))=(g,x)$. Therefore, $f \circ k$ is identity, hence $k=\rho|_{\{g\}\times X}$ is a homeomorphism. 
+\\\\ Now we earlier had $q^{-1}(q(U))=\cup_{x \in U} (\mathscr{O}_x)=\cup_{x \in U} (\{\rho(g,x):g \in G\})=\cup_{g\in G} \cup_{x \in U}(\{\rho(g,x)\})$. This is equal to $\cup_{g \in G} \{\rho(g,x): x \in U\}$, but note that $\{\rho(g,x):x\in U\}$ is the direct image of the set $\{g\} \times U$ (which is open in $\{g\}\times X$) under the map $\rho|_{\{g\}\times X}$, which implies $q^{-1}(q(U))$ is an arbitrary union of open sets, which ultimately means it is open. Hence, $q$ is an open map. 
+
+}
+\thmp{Let $X$ be a Hausdorff topological space, and $q:X \to X/\sim$ be an open quotient map (on some relation $\sim$). Then $X/\sim$ is Hausdorff if and only if $R:=\{(x,y):x \sim y\}$ (the relation itself) is closed as a subset of $X \times X$}{$\implies$) Let $X/\sim$ be Hausdorff. We know, then, that $\Delta=\{([x],[x]): [x]\in X/\sim\}$ is closed (if and only if $X/\sim$ is Hausdorff). We have to show that $R^C=\{(x,y):x \not \sim y\}$ is open. Let $(x,y) \in R^C$, i.e, $[x]$ and $[y]$ are distinct. Since $X/\sim$ is Hausdorff, we have that, there exists $U_{[x]},U_{[y]} \subseteq X/\sim$ such that $U_{[x]}\cap U_{[y]}=\varnothing$ and $[x]\in U_{[x]}$ and $[y] \in U_{[y]}$. Consider $U_x:=q^{-1}(U_{[x]})$ and $U_y:=q^{-1}(U_{[y]})$. Note that, $U_x$ and $U_y$ must necessarily be disjoint. Moreover, $x \in U_x$ and $y \in U_y$. Suppose $p \in U_x$ and $q \in U_y$, can $p \sim q$? If $p \sim q$, then $[p]=[q]$, which is absurd since $U_{[x]}$ and $U_{[y]}$ are disjoint. Hence, $U_x \times U_y$ is fully contained in $R^C$, hence $R^C$ is open.
+\\\\ $\impliedby$) Suppose $R=\{(x,y):x \sim y\}$ is closed. That means that $R^c=\{(x,y):x \not \sim y\} $ is open. Consider $[x],[y] \in X/\sim$ with $[x]\neq [y]$. Look at $x,y$ themselves: $(x,y) \in R^C$, which is said to be open. Therefore, there $U_x$ and $U_y$ open such that $(x,y) \in U_x \times U_y \subseteq R^C$  }
 \end{document}
