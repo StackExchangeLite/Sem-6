@@ -8,9 +8,11 @@
 \usepackage{graphicx}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{mathrsfs}
+\usepackage{mdframed}
 \usepackage{framed}
 \usepackage{frame}
 \usepackage{quiver}
+\usepackage{xcolor}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 
@@ -24,7 +26,8 @@
 
 \numberwithin{equation}{section}
 
-\renewenvironment{leftbar}[1][\hsize]
+\setlength{\FrameSep}{3pt}
+\newenvironment{leftbar}[1][\hsize]
 {%
     \def\FrameCommand
     {%
@@ -33,8 +36,7 @@
         \fboxsep=\FrameSep\colorbox{white}%
     }%
     \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}%
-}
-{\endMakeFramed}
+}{\endMakeFramed}
 
 \newcommand{\thmp}[2]{
 \begin{theorem}

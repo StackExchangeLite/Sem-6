@@ -1,0 +1,106 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\chapter*{Topology Assignment}
+\begin{center}
+\textbf{Tharun Naagesh IMS22252}
+\end{center}
+
+\section*{Definitions and Requisite Lemmas}
+
+\defn{$GL_n^+(\RR)$}{$$GL_n^+(\RR):=\{M \in \MM_{n \times n}(\RR): \det(M)>0\} $$}
+\defn{$SO_n(\RR)$}{$$SO_n(\RR):=\{M \in GL_n^+(\RR): M^TM=MM^T=I_n\} $$}
+\defn{$GL_n(\CC)$}{$$GL_n(\CC):=\{M \in \MM_{n\times n}(\CC): M \text{ is invertible}\} $$}
+\defn{Deformation Retraction}{
+    A \emph{deformation retraction} of a topological space $X$ onto a subspace $A \subseteq X$ is a continuous map $F: X \times [0,1] \to X$ such that:
+    \begin{enumerate}
+        \item For all $x \in X$, $F(x,0) = x$ (the identity at time 0).
+        \item For all $x \in X$, $F(x,1) \in A$ (the image at time 1 lies in $A$).
+        \item For all $a \in A$ and all $t \in [0,1]$, $F(a,t) = a$ (points in $A$ remain fixed throughout the deformation).
+    \end{enumerate}
+    If such a map exists, we say that $X$ deformation retracts onto $A$, and that $A$ is a deformation retract of $X$.
+}
+\defn{Orthonormal Matrix}{
+    A matrix $M \in \MM_{n\times n}(\RR)$ is \emph{orthonormal} if its columns form an orthonormal basis of $\RR^n$. Equivalently, $M$ is orthonormal if $M^TM = I_n$, where $I_n$ is the $n \times n$ identity matrix.
+}
+\defn{Unitary Matrix}{
+    A matrix $M \in \MM_{n\times n}(\CC)$ is \emph{unitary} if its columns form an orthonormal basis of $\CC^n$ with respect to the standard Hermitian inner product. Equivalently, $M$ is unitary if $M^*M = I_n$, where $M^*$ is the conjugate transpose of $M$.
+}
+\begin{theorem}{(Spectral Theorem for Real Symmetric Matrices) Let $A \in \MM_{n\times n}(\RR)$ be real and symmetric. Then the following are true:
+    \begin{enumerate}
+        \item $A$ has real eigenvalues.
+        \item $A$ is diagonalizable.
+        \item There exists an orthonormal basis of $\RR^n$ consisting of eigenvectors of $A$.
+    \end{enumerate}
+
+In short, $A$ may be orthonormally diagnolaised: $A=V\Lambda V^T$ where $V$ is an orthonormal matrix and $\Lambda$ is a diagonal matrix of eigenvalues.
+    
+    }
+\end{theorem}
+\begin{theorem}
+    (Spectral Theorem for Complex Hermitian Matrices) Let $A \in \MM_{n\times n}(\CC)$ be complex and Hermitian. Then the following are true:
+    \begin{enumerate}
+        \item $A$ has real eigenvalues.
+        \item $A$ is diagonalizable.
+        \item There exists a unitary basis of $\CC^n$ consisting of eigenvectors of $A$.
+    \end{enumerate}
+In short, $A$ may be unitarily diagnolaised: $A=V\Lambda V^*$ where $V$ is a unitary matrix and $\Lambda$ is a diagonal matrix of eigenvalues.
+\end{theorem}
+\begin{remark}
+    The difference between a unitary matrix and an orthonormal matrix is that a unitary matrix is defined over the complex numbers and preserves the Hermitian inner product, while an orthonormal matrix is defined over the real numbers and preserves the standard inner product. In other words, a unitary matrix $U$ satisfies $U^*U = I_n$, while an orthonormal matrix $O$ satisfies $O^TO = I_n$. Both types of matrices have columns that form an orthonormal basis of their respective vector spaces, but the underlying field and inner product they preserve differ. For brevity, let us define the hermitian inner product on $\CC^n$ as $\langle x, y \rangle = x^*y$ for $x,y \in \CC^n$. Then, a unitary matrix $U$ preserves this inner product, meaning $\langle Ux, Uy \rangle = \langle x, y \rangle$ for all $x,y \in \CC^n$. In contrast, an orthonormal matrix $O$ preserves the standard inner product on $\RR^n$, meaning $\langle Ox, Oy \rangle = \langle x, y \rangle$ for all $x,y \in \RR^n$, where $\langle x, y \rangle = x^Ty$. (Here $()^*$ denotes the conjugate transpose, and $T$ denotes the transpose.)
+\end{remark}
+\begin{lemma}\label{proof of big theorem}Symmetric Positive Definite Matrices (Matrices that are symmetric and have positive eigenvalues) admit a positive definite square root that is unique and also symmetric positive definite.
+
+\end{lemma}
+\begin{proof}
+    Let $S$ be symmetric, positive definite. Then, by spectral theorem, $$S=Q \Lambda Q^T$$ where $\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)$, $Q$ is orthonormal and $\lambda_i > 0$ for all $i$. Define $\sqrt{S} := Q \sqrt{\Lambda} Q^T$ where $\sqrt{\Lambda} = \operatorname{diag}(\sqrt{\lambda_1},\ldots,\sqrt{\lambda_n})$. Then $\sqrt{S}$ is symmetric and positive definite, and $(\sqrt{S})^2 = S$.
+\newline
+Moreover, define $S^{-1/2} := Q \Lambda^{-1/2} Q^T$ where $\Lambda^{-1/2}:=\operatorname{diag}(\lambda_1^{-1/2},\ldots,\lambda_n^{-1/2})$. Then $S^{-1/2}$ is symmetric and positive definite, and $(S^{-1/2})^2 = S^{-1}$.
+\newline
+To show uniqueness, suppose there exists another symmetric positive definite matrix $R$ such that $R^2 = S$. Note that, $R$ is also diagonalizable by the spectral theorem, so $R = P D P^T$ where $D$ is diagonal and $P$ is orthonormal. Then, $S = R^2 = P D^2 P^T$. By uniqueness of the spectral decomposition, we must have $P = Q$ and $D^2 = \Lambda$, which implies $D = \sqrt{\Lambda}$. Thus, $R = Q \sqrt{\Lambda} Q^T = \sqrt{S}$, proving uniqueness. 
+\end{proof}
+\begin{remark}
+    We have, in \ref{proof of big theorem}, shown that for a symmetric positive definite matrix (SPD) $S$, there exists a unique symmetric positive definite matrix $\sqrt{S}$ as well as $S^{-1/2}=(S^{1/2})^{-1}$. 
+\end{remark}
+
+\begin{theorem}\label{polar decomposition}
+    (Polar Decomposition) Every matrix $M \in GL_n(\CC)$ can be uniquely expressed as a product $M = UP$ where $U \in U(n)$ is unitary and $P$ is a positive definite Hermitian matrix. Moreover, if $M$ is real, then $U$ can be taken to be orthogonal and $P$ can be taken to be symmetric positive definite.
+\end{theorem}
+\begin{proof}
+Let $A \in GL_n(\CC)$. Let $U=\sqrt{(A^*A)}$ and $P = U^{-1}A$. Then, $U$ is positive definite Hermitian by Lemma \ref{proof of big theorem}, and $P$ is unitary since $P^*P = A^*U^{-2}A = A^*(A^*A)^{-1}A = I_n$. Thus, $A = UP$.
+To show uniqueness, suppose $A = U'P'$ is another such decomposition with $U'$ positive definite Hermitian and $P'$ unitary. This tells us that $U'^{-1}U=P'P^{-1}$ is both unitary and positive definite Hermitian. Say $Z$ is such a matrix. Then from Hermitian, we have $Z=Z^*$. Unitary tells us that $ZZ^*=Z^2=I$. From spectral theorem, we see that $Z=Y \Lambda Y^*$ where $Y$ is unitary and $\Lambda$ is diagonal with positive real entries (since $Z$ is positive definite). If $Z^2=I$, then $U \Lambda U^* U \Lambda U^*=U \Lambda^2 U^*=I$ (Since $U$ is unitary). This implies $\Lambda^2=I$, so $\Lambda=I$. Thus, $Z=Y I Y^* = I$. Hence, $U'=U$ and $P'=P$, proving uniqueness.
+
+\end{proof}
+
+\begin{theorem}
+    (Continuous dependence of eigenvalues and eigenvectors) Let $M(t)$ be a continuous family of matrices in $GL_n(\CC)$ parameterized by $t \in [0,1]$. Then the eigenvalues and eigenvectors of $M(t)$ can be chosen to depend continuously on $t$.
+\end{theorem}
+
+\section{\textbf{(Problem 1)} Deformation Retraction of $GL_n^+(\RR)$ onto $SO_n(\RR)$}
+
+Let $M$ be a given matrix in $GL_n^+(\RR)$. We know from \ref{polar decomposition} that $M$ can be uniquely expressed as $M=UP$ where $U \in SO_n(\RR)$ is orthogonal and $P$ is a positive definite symmetric matrix. Define a homotopy $F: GL_n^+(\RR) \times [0,1] \to GL_n^+(\RR)$ by
+$$F(M,t) = U \left( tI + (1-t)P \right)$$
+where $I$ is the identity matrix. Note that $F(M,0) = M$ and $F(M,1) = U$. Moreover, for each fixed $t$, $F(M,t)$ is a product of an orthogonal matrix and a positive definite symmetric matrix, so it lies in $GL_n^+(\RR)$. Thus, $F$ is a continuous deformation from $M$ to $U$, which is in $SO_n(\RR)$. Since this construction works for any $M \in GL_n^+(\RR)$, we have shown that $GL_n^+(\RR)$ deformation retracts onto $SO_n(\RR)$.\newline \qed
+
+\section{\texorpdfstring{Intermediary to \textbf{(Problem 2)}: Deformation Retraction of $GL_n(\CC)$ onto $U(n)$}{Intermediary to (Problem 2): Deformation Retraction of GL_n(C) onto U(n)}}
+By the same token as problem 1, we can show that $GL_n(\CC)$ deformation retracts onto $U(n)$ by using the polar decomposition in the complex case. For any $M \in GL_n(\CC)$, we can write $M = UP$ where $U \in U(n)$ is unitary and $P$ is a positive definite Hermitian matrix. Define a homotopy $F: GL_n(\CC) \times [0,1] \to GL_n(\CC)$ by
+$$F(M,t) = U \left( tI + (1-t)P \right)$$
+where $I$ is the identity matrix. Then $F(M,0) = M$ and $F(M,1) = U$. Moreover, for each fixed $t$, $F(M,t)$ is a product of a unitary matrix and a positive definite Hermitian matrix, so it lies in $GL_n(\CC)$. Thus, $F$ is a continuous deformation from $M$ to $U$, which is in $U(n)$. Since this construction works for any $M \in GL_n(\CC)$, we have shown that $GL_n(\CC)$ deformation retracts onto $U(n)$.\newline \qed
+
+\section{\textbf{(Problem 2)} $GL_n(\CC)$ is path-connected}
+Since $GL_n(\CC)$ deformation retracts onto $U(n)$, it suffices to show that $U(n)$ is path-connected. Let $U \in U(n)$ be a unitary matrix. Note that the spectral theorem works generally for \emph{normal operators} (operators that commute with their adjoint), and unitary matrices are normal. Thus, we can write $U = Q \Lambda Q^*$, where $\Lambda=diag(\lambda_1,\lambda_2,\ldots,\lambda_n)$. Since $U$ is unitary, we have $UU^*=I$ which gives us $Q \Lambda \Lambda^* Q^*=I $ which gives us that $\Lambda \Lambda^*=I$, or $|\lambda_i|=1$ for all $i$. Thus, we can write $\lambda_i = e^{i\theta_i}$ for some $\theta_i \in \RR$. Rewriting everything, we thus have $$U= Q \begin{bmatrix}
+e^{i\theta_1} & 0 & \cdots & 0 \\
+0 & e^{i\theta_2} & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & e^{i\theta_n}
+\end{bmatrix}Q^* $$ 
+Define $$U(t)=Q \begin{bmatrix}
+e^{it\theta_1} & 0 & \cdots & 0 \\
+0 & e^{it\theta_2} & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & e^{it\theta_n}\end{bmatrix}Q^*$$
+Note that $U(t) U(t)^*=I$ which means $U(t) \in U(n) \ \forall t \in [0,1]$. Moreover, $U(0)=I$ and $U(1)=U$. Thus, we have a continuous path from the identity matrix to any unitary matrix $U$, which shows that $U(n)$ is path-connected. Since $GL_n(\CC)$ deformation retracts onto $U(n)$, it follows that $GL_n(\CC)$ is also path-connected.\newline \qed
+
+
+
+\end{document}
