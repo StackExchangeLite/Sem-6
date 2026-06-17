@@ -184,7 +184,11 @@ If $x$ were to be in $B$, then $\pi_{\beta_i}(x)=x_{\beta_i}\in U_{\beta_i}$ for
 \begin{lemma}
     In each of the box and product topologies, we have that if each $X_{j}$ is Hausdorff, then $\prod X_j$ is also Hausdorff. 
 \end{lemma}
-\lemp{In both the box and product topologies, $\prod_j cls(A_j)=cls(\prod_j A_j)$}{}
+\lemp{In both the box and product topologies, $\prod_j cls(A_j)=cls(\prod_j A_j)$}{Note that $A_j \subseteq cls(A_j)$ for all $j\in J$, and hence $$\prod_j A_j \subset \prod_j cls(A_j)$$ Let $(x_j)_{j\in J}\in \prod_j X_j$ be a limit point of $\prod_j cls(A_j)$, i.e. for every basis element $\prod_j B_j$ containing $(x_j)_{j\in J}$, we have some element of $\prod_j cls(A_j)$, call it $(a_j)_{j\in J}$, in $\prod_j B_j$. This in turn means that $(a_j)\in B_j$ for all $j\in J$. Since this is true for every basis element, $x_j \in cls(A_j)$ which means that $(x_j)_{j\in J}\in \prod_j cls(A_j)$, making $\prod_j cls(A_j)$ a closed set. Since $\prod_j A_j \subset \prod_j cls(A_j)$, we have $cls(\prod_j A_j)\subset \prod_j cls(A_j)$.
+\\ Let $(x_j)_{j\in J} \in \prod_j cls(A_j)$. Let $\prod_j B_j$ be any basis element around $(x_j)_{j\in J}$. Since $x_j\in B_j$ and $x_j \in cls(A_j)$, we have an element $a_j \in A_j$ such that $a_j \in B_j$. Therefore, $(a_j)_{j\in J}\in \prod_j B_j$, which means that for any basis element around $(x_j)_{j\in J}$, we have an element $(a_j)_{j\in J}$ of $\prod_j A_j$ that is also in $\prod_j B_j$. Hence $(x_j)_{j\in J} \in cls(\prod_j A_j)$ which means that $$cls(\prod_j A_j)=\prod_j cls(A_j)$$ 
+}
+
+
 \subsection{Subspace Topology}
 \defn{Subspace Topology}{Let $X$ be a topological space with a topology $\TTT_X$ and let $Y \subset X$. We define the \emph{\textbf{subspace topology}} on $Y$ as $\TTT_Y:=\{U \cap Y: U \in \TTT_X\}$}
 \thmp{The Subspace topology is indeed a topology on $Y$}{$\varnothing=Y \cap \varnothing$ and $Y=Y \cap X$. Hence $\varnothing$ and $X$ are both in $\TTT_Y$. Let $U_{\alpha}$ be a collection of sets in $\TTT_Y$, i.e $U_{\alpha}=G_{\alpha} \cap Y$ for $G_{\alpha} \in \TTT_X$. $\cup_{\alpha} U_{\alpha}=\cup_{\alpha} (G_{\alpha} \cap Y)=(\cup_{\alpha} G_{\alpha}) \cap Y \in \TTT_Y$. Closed under arbitrary union.
